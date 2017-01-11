@@ -25,6 +25,7 @@ const changeUi = (function() {
 
   let renderResponse = function (projects) {
     showContent();
+    list.innerHTML = '';
     projects.forEach(function(project){
       createListItem(project);
     })

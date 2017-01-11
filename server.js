@@ -13,7 +13,6 @@ var connection = mysql.createConnection({
   database: 'secretprojects',
 });
 
-var niceWords = ["amazing", "awesome", "blithesome", "excellent", "fabulous", "fantastic", "favorable", "fortuitous", "great", "incredible", "ineffable", "mirthful", "outstanding", "perfect", "propitious", "remarkable", "smart", "spectacular", "splendid", "stellar", "stupendous", "super", "ultimate", "unbelievable", "wondrous"];
 
 connection.connect(function connectMsql(error) {
   if (error) {
@@ -35,15 +34,28 @@ app.use(function use(req, res, next) {
 });
 
 var validator = function (req) {
-  let text = req.body.feedback;         /* ezt még validálni kell */
-  let scale = parseInt(req.body.scale);
-  let email = req.body.email;
 
-  // function findNiceWords () {
-  //   niceWords.forEach
-  // };
+  var niceWords = ["amazing", "awesome", "blithesome", "excellent", "fabulous", "fantastic", "favorable", "fortuitous", "great", "incredible", "ineffable", "mirthful", "outstanding", "perfect", "propitious", "remarkable", "smart", "spectacular", "splendid", "stellar", "stupendous", "super", "ultimate", "unbelievable", "wondrous"];
 
-  if (email.indexOf != -1  && scale >= 10) {
+  var text = req.body.feedback;
+  console.log(text.split(' '));
+  var scale = parseInt(req.body.scale);
+  var email = req.body.email;
+
+  function findNiceWords () {
+    var counter = 0;
+    var textArray = text.split(' ');
+    textArray.forEach( function(word) {
+      if (niceWords.indexOf(word)) {
+        counter++;
+      }
+    });
+    if (counter >= 3) {
+      return true;
+    }
+  };
+
+  if (email.indexOf('@') != -1  && scale >= 10 && findNiceWords() == true) {
     return true;
   } else {
     return false;
@@ -53,13 +65,10 @@ var validator = function (req) {
 module.exports = validator;
 
 app.post('/exam', function(req, res) {
-  console.log(req.body);
-  console.log(validator(req));
   if (validator(req) == true) {
     connection.query({
       sql: 'SELECT project_name FROM projects'},
       function sendBackProjects(err, rows) {
-        console.log(rows);
       if (err) {
         console.log(err.toString());
         return;
@@ -69,7 +78,6 @@ app.post('/exam', function(req, res) {
       });
       console.log("yeah");
       res.send({"status": "ok", "projects": content});
-      console.log({"status": "ok", "projects": content});
     });
   } else {
     res.send({"status": "error", "message": "thank you"});
