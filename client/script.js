@@ -8,7 +8,9 @@ const sendFeedback = (function () {
 
   let send = function () {
     ajax.postMessage(textarea.value, number.value, email.value);
-    // textarea.value = '';
+    textarea.value = '';
+    number.value = '';
+    email.value = '';
   };
   button.addEventListener('click', send);
 

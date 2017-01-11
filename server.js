@@ -13,7 +13,6 @@ var connection = mysql.createConnection({
   database: 'secretprojects',
 });
 
-
 connection.connect(function connectMsql(error) {
   if (error) {
     console.log('Connection failed', error);
@@ -38,7 +37,6 @@ var validator = function (req) {
   var niceWords = ["amazing", "awesome", "blithesome", "excellent", "fabulous", "fantastic", "favorable", "fortuitous", "great", "incredible", "ineffable", "mirthful", "outstanding", "perfect", "propitious", "remarkable", "smart", "spectacular", "splendid", "stellar", "stupendous", "super", "ultimate", "unbelievable", "wondrous"];
 
   var text = req.body.feedback;
-  console.log(text.split(' '));
   var scale = parseInt(req.body.scale);
   var email = req.body.email;
 
@@ -82,7 +80,6 @@ app.post('/exam', function(req, res) {
   } else {
     res.send({"status": "error", "message": "thank you"});
   }
-
 });
 
 var port = process.env.PORT || 3001;
