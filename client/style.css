@@ -10,3 +10,22 @@ body {
   width: 50rem;
   margin: 0 auto;
 }
+
+p, label {
+  font-size: 2rem;
+  margin-bottom: 4rem;
+}
+
+span {
+  font-size: 8rem;
+  display: block;
+}
+
+input {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.hide {
+  display: none;
+}
