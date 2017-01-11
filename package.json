@@ -1,0 +1,29 @@
+{
+  "name": "zerda-exam-web",
+  "version": "1.0.0",
+  "description": "### Getting Started  - Fork this repository under your own account  - Clone the forked repository to your computer  - Commit your progress frequently and with descriptive commit messages  - All your answers and solutions should go in this repository",
+  "main": "server.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaborbencsik/zerda-exam-web.git"
+  },
+  "author": "Bencso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaborbencsik/zerda-exam-web/issues"
+  },
+  "homepage": "https://github.com/gaborbencsik/zerda-exam-web#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mysql": "^2.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0"
+  }
+}
